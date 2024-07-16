@@ -36,7 +36,7 @@ class WebBuildPipeline {
                                         repository,
                                         gitCredentialsId
                                     ))
-                                sandbox(true)
+                                sandbox(false)
                             }
                             usePredefinedVariables(false)
                             defaultChoice('master')
