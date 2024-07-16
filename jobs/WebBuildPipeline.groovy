@@ -1,4 +1,4 @@
-package jobs.WebBuildPipeline
+package jobs
 
 import javaposse.jobdsl.dsl.DslFactory
 import utilities.Git
