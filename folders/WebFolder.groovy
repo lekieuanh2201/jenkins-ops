@@ -10,10 +10,10 @@ class WebFolder {
       displayName('Web')
     }
     factory.folder('web/build'){
-      displayName('Backend')
+      displayName('Build')
     }
     factory.folder('web/deploy'){
-      displayName('Frontend')
+      displayName('Deploy')
     }
 
   }
