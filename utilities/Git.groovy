@@ -28,8 +28,8 @@ class Git {
         def accessToken = credential.getPassword().getPlainText()
         def repository = '$repository'
 
-        def gitUrl = "https://oauth2:${accessToken}@github.com/${user}/${repository}"
-        def gitBranches = "git ls-remote --heads ${gitUrl}".execute().text.readLines().collect { it.split()[1].replaceAll("refs/heads/", "") }.sort().reverse()
+        def gitUrl = "https://oauth2:\${accessToken}@github.com/\${user}/\${repository}"
+        def gitBranches = "git ls-remote --heads \${gitUrl}".execute().text.readLines().collect { it.split()[1].replaceAll("refs/heads/", "") }.sort().reverse()
 
         return gitBranches
         """
