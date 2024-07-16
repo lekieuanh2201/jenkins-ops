@@ -1,4 +1,4 @@
-packages utilities
+package utilities
 
 class Git {
     static String getListRepositoryBranchesScript(
