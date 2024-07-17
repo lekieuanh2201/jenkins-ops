@@ -49,7 +49,6 @@ class WebBuildPipeline {
                 labelParam('NODE_LABEL') {
                     defaultValue(nodeLabel)
                     description('Select nodes')
-                    allNodes('allCases', 'IgnoreOfflineNodeEligibility')
                 }
             }
             definition {
