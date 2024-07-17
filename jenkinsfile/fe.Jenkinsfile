@@ -23,17 +23,21 @@ pipeline {
                     reuseNode true
                 }
             }
+            when {
+                changeset "**/frontend/*.*"
+                beforeAgent true
+            }
             steps {
-                sh '''
-                    ls -la
-                    cd frontend
-                    ls -la
-                    node --version
-                    npm --version
-                    npm ci
-                    npm run build --no-warnings
-                    ls -la
-                '''
+                dir('frontend') {
+                    sh '''
+                        ls -la
+                        node --version
+                        npm --version
+                        npm ci
+                        npm run build --no-warnings
+                        ls -la
+                    '''
+                }
             }
         }
 
