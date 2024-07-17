@@ -1,6 +1,4 @@
 pipeline {
-    agent any
-
     environment {
         // Set npm cache directory to a writable location
         npm_config_cache = "${WORKSPACE}/.npm-cache"
@@ -23,10 +21,6 @@ pipeline {
                     image 'node:18-alpine'
                     reuseNode true
                 }
-            }
-            when {
-                changeset "**/frontend/*.*"
-                beforeAgent true
             }
             steps {
                 sh '''

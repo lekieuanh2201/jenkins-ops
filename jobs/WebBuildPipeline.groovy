@@ -9,7 +9,8 @@ class WebBuildPipeline {
         String gitCredentialsId,
         String buildIdentifier,
         String jenkinsfile,
-        String repository
+        String repository,
+        String nodeLabel
     ) {
         def pipelineScript = "./jenkinsfile/$jenkinsfile"
         def jobName = "jenkins-demo-$buildIdentifier-build"
@@ -44,6 +45,11 @@ class WebBuildPipeline {
                         editable(true)
                         description('')
                     }
+                }
+                labelParam('NODE_LABEL') {
+                    defaultValue(nodeLabel)
+                    description('Select nodes')
+                    allNodes('allCases', 'IgnoreOfflineNodeEligibility')
                 }
             }
             definition {

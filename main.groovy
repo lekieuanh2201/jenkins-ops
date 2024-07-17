@@ -8,5 +8,6 @@ new WebBuildPipeline(
     "github",
     "frontend",
     "fe.Jenkinsfile",
-    "jenkins-demo-web"
+    "jenkins-demo-web",
+    "jenkins-agent"
 )
