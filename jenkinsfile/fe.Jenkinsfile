@@ -26,6 +26,8 @@ pipeline {
             steps {
                 sh '''
                     ls -la
+                    cd frontend
+                    ls -la
                     node --version
                     npm --version
                     npm ci
