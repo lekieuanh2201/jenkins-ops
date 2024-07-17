@@ -1,4 +1,5 @@
 pipeline {
+    agent any
     environment {
         // Set npm cache directory to a writable location
         npm_config_cache = "${WORKSPACE}/.npm-cache"
