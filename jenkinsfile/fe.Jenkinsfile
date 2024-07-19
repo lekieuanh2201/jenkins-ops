@@ -36,9 +36,9 @@ pipeline {
                     sh 'pwd'
                     sh 'docker build -t ${IMAGE_1_NAME}:${IMAGE_1_TAG} .'
                     withCredentials([file(credentialsId: "${ARTIFACTS_CREDENTIALS_ID}", variable: 'GCR_CRED')]){
-                    sh 'cat "${GCR_CRED}" | docker login -u _json_key_base64 --password-stdin https://"${REPO_LOCATION}"-docker.pkg.dev'
+                    sh 'cat ${GCR_CRED} | docker login -u _json_key_base64 --password-stdin https://${REPO_LOCATION}-docker.pkg.dev'
                     sh 'docker push ${IMAGE_1_NAME}:${IMAGE_1_TAG}'
-                    sh 'docker logout https://"${REPO_LOCATION}"-docker.pkg.dev'
+                    sh 'docker logout https://${REPO_LOCATION}-docker.pkg.dev'
                     }
                     sh 'docker rmi ${IMAGE_1_NAME}:${IMAGE_1_TAG}'
                     echo 'Build docker image Finish'
