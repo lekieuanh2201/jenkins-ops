@@ -24,7 +24,7 @@ class WebBuildPipeline {
                 keepSystemVariables(true)
                 envs([
                     BUILD_IDENTIFIER: buildIdentifier,
-                    GIT_CREDENTIALS_ID: gitCredentialsId
+                    GIT_CREDENTIALS_ID: gitCredentialsId,
                 ])
             }
             parameters {

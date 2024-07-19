@@ -4,6 +4,9 @@ pipeline {
         // Set npm cache directory to a writable location
         npm_config_cache = "${WORKSPACE}/.npm-cache"
         CI = 'false'
+
+        registry = "us-docker.pkg.dev/big-lab-422102/jenkins-demo"
+        registryCredential = "gcp-sa"  
     }
 
     stages {
@@ -16,27 +19,19 @@ pipeline {
                 }
             }
         }
-        stage('Build') {
-            agent {
-                docker {
-                    image 'node:18-alpine'
-                    reuseNode true
-                }
-            }
+        stage('Build Frontend') {
             when {
                 changeset "**/frontend/*.*"
                 beforeAgent true
             }
             steps {
                 dir('frontend') {
-                    sh '''
-                        ls -la
-                        node --version
-                        npm --version
-                        npm ci
-                        npm run build --no-warnings
-                        ls -la
-                    '''
+                    script {
+                        dockerImage = docker.build registry + ":latest"
+                        docker.withRegistry( '', registryCredential ) {
+                            dockerImage.push()
+                        }
+                    }
                 }
             }
         }
