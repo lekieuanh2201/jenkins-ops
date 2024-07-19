@@ -27,6 +27,9 @@ class WebBuildPipeline {
                     GIT_CREDENTIALS_ID: gitCredentialsId,
                 ])
             }
+            triggers{
+                scm('* * * * *')
+            }
             parameters {
                 extensibleChoiceParameterDefinition {
                     name('BRANCH')
