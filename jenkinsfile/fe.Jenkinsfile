@@ -12,9 +12,9 @@ pipeline {
         REPO_LOCATION = "us"
         ARTIFACTS_CREDENTIALS_ID = "artifacts-registry-sa"
         IMAGE_1_NAME = "${REPO_LOCATION}-docker.pkg.dev/${PROJECT}/${REPO_NAME}/frontend"
-        IMAGE_1_TAG = "latest"
+        IMAGE_1_TAG = "${env.BUILD_ID}"
         IMAGE_2_NAME = "${REPO_LOCATION}-docker.pkg.dev/${PROJECT}/${REPO_NAME}/backend"
-        IMAGE_2_TAG = "latest"  
+        IMAGE_2_TAG = "${env.BUILD_ID}"  
     }
 
     stages {
@@ -42,7 +42,7 @@ pipeline {
             }
             steps {
                 dir('frontend') {
-                    echo 'Build docker image Start'
+                    echo 'Build frontend docker image Start'
                     sh 'pwd'
                     sh 'docker build -t ${IMAGE_1_NAME}:${IMAGE_1_TAG} .'
                     // withCredentials([file(credentialsId: "${ARTIFACTS_CREDENTIALS_ID}", variable: 'GCR_CRED')]){
@@ -51,7 +51,7 @@ pipeline {
                     // sh 'docker logout https://${REPO_LOCATION}-docker.pkg.dev'
                     // }
                     sh 'docker rmi ${IMAGE_1_NAME}:${IMAGE_1_TAG}'
-                    echo 'Build docker image Finish'
+                    echo 'Build frontend docker image Finish'
                 }
             }
         }
@@ -63,7 +63,7 @@ pipeline {
             }
             steps {
                 dir('backend') {
-                    echo 'Build docker image Start'
+                    echo 'Build backend docker image Start'
                     sh 'pwd'
                     sh 'docker build -t ${IMAGE_2_NAME}:${IMAGE_2_TAG} .'
                     // withCredentials([file(credentialsId: "${ARTIFACTS_CREDENTIALS_ID}", variable: 'GCR_CRED')]){
@@ -72,7 +72,7 @@ pipeline {
                     // sh 'docker logout https://${REPO_LOCATION}-docker.pkg.dev'
                     // }
                     sh 'docker rmi ${IMAGE_2_NAME}:${IMAGE_2_TAG}'
-                    echo 'Build docker image Finish'
+                    echo 'Build backend docker image Finish'
                 }
             }
         }

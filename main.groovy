@@ -6,7 +6,7 @@ new WebFolder(this)
 new WebBuildPipeline(
     this,
     "github",
-    "frontend",
+    "web",
     "fe.Jenkinsfile",
     "jenkins-demo-web",
     "jenkins-agent"
