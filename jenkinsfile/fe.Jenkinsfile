@@ -32,6 +32,10 @@ pipeline {
             // }
             steps {
                 dir('frontend') {
+                    echo 'Login to gcp'
+                    withCredentials([file(credentialsId: "${ARTIFACTS_CREDENTIALS_ID}", variable: 'GC_KEY')]) {
+                        sh("gcloud auth activate-service-account --key-file=${GC_KEY}")
+                    }
                     echo 'Build docker image Start'
                     sh 'pwd'
                     sh 'docker build -t ${IMAGE_1_NAME}:${IMAGE_1_TAG} .'
