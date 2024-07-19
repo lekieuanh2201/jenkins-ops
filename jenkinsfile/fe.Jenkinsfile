@@ -29,8 +29,8 @@ pipeline {
             steps {
                 dir('frontend') {
                     script {
-                        dockerImage = docker.build registry + ":latest"
-                        docker.withRegistry( '', registryCredential ) {
+                        dockerImage = docker.build registry + "/frontend:latest"
+                        docker.withRegistry( 'https://us-docker.pkg.dev', registryCredential ) {
                             dockerImage.push()
                         }
                     }
