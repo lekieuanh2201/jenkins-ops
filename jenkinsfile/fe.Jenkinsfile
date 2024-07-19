@@ -22,10 +22,10 @@ pipeline {
             }
         }
         stage('Build Frontend') {
-            when {
-                changeset "**/frontend/*.*"
-                beforeAgent true
-            }
+            // when {
+            //     changeset "**/frontend/*.*"
+            //     beforeAgent true
+            // }
             steps {
                 dir('frontend') {
                     script {
